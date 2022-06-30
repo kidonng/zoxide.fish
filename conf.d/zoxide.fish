@@ -15,11 +15,11 @@ end
 set -q zoxide_cmd || set -l zoxide_cmd z
 if test -n "$zoxide_cmd"
     function $zoxide_cmd
-        _zoxide_z $argv
+        __zoxide_z $argv
     end
     complete -c $zoxide_cmd -f -a '(__zoxide_z_complete)'
 
     function "$zoxide_cmd"i
-        _zoxide_zi $argv
+        __zoxide_zi $argv
     end
 end
