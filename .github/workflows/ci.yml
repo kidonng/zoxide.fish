@@ -1,0 +1,17 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: fish-actions/install-fish@v1
+      - uses: fish-actions/format-check@v1
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: fish-actions/install-fish@v1
+      - uses: fish-actions/syntax-check@v1
