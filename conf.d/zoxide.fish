@@ -1,10 +1,11 @@
-if ! status -i || ! command -sq zoxide
+if ! status is-interactive ||
+        ! command --query zoxide
     exit
 end
 
-functions -q __zoxide_cd_internal || functions -c cd __zoxide_cd_internal
+functions --query __zoxide_cd_internal || functions --copy cd __zoxide_cd_internal
 
-set -q zoxide_hook || set -l zoxide_hook --on-variable PWD
+set --query zoxide_hook || set --local zoxide_hook --on-variable PWD
 if test -n "$zoxide_hook"
     function __zoxide_hook $zoxide_hook
         test -z "$fish_private_mode"
@@ -12,12 +13,12 @@ if test -n "$zoxide_hook"
     end
 end
 
-set -q zoxide_cmd || set -l zoxide_cmd z
+set --query zoxide_cmd || set --local zoxide_cmd z
 if test -n "$zoxide_cmd"
     function $zoxide_cmd
         __zoxide_z $argv
     end
-    complete -c $zoxide_cmd -f -a '(__zoxide_z_complete)'
+    complete $zoxide_cmd --no-files -a '(__zoxide_z_complete)'
 
     function "$zoxide_cmd"i
         __zoxide_zi $argv
