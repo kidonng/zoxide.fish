@@ -18,7 +18,7 @@ if test -n "$zoxide_cmd"
     function $zoxide_cmd
         __zoxide_z $argv
     end
-    complete $zoxide_cmd --no-files -a '(__zoxide_z_complete)'
+    complete --command $zoxide_cmd --no-files --arguments '(__zoxide_z_complete)'
 
     function "$zoxide_cmd"i
         __zoxide_zi $argv
